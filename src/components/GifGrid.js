@@ -1,23 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { getGifs } from "../helpers/GetGifs";
+import { useFetchGifs } from "../hooks/useFetchGifs";
 import { GifGridItem } from "./GifGridItem";
 
+
 export const GifGrid = ({ category }) => {
-  const [images, setImges] = useState([]);
 
-  //  Ejecuta una funcion en relacion a sus dependencias
-  //  Si no se colocan dependencias se ejecuta cuando el componente es rendeerizado por primera vez
+  const {data, loading} = useFetchGifs( category );
 
-  useEffect(() => {
-    getGifs(category).then((images) => setImges(images));
-  }, [category]); //si la categoria cambia va volver a ejecutar este efecto
+
+ 
 
   return (
     <div>
-      <h3> {category} </h3>
-      <div className="card_container">
-        {images.map((gifs) => {
-          return <GifGridItem key={gifs.title} {...gifs} />;
+      <h3
+      className="text-center text-2xl bg-gray-200 my-3 text-blue-500" 
+      > {category} </h3>
+      
+      <div
+
+       className="flex justify-center align-center flex-wrap gap-6 p-3"
+
+       >
+
+        {
+          loading? <p>Cargando...</p> : <></>
+        }
+        {data.map((gifs) => {
+          return <GifGridItem key={gifs.id} {...gifs} />;
         })}
       </div>
 

@@ -12,17 +12,19 @@ export const GifExpertApp = () => {
     
   return (
     <>
-      <h2>GifExpertApp</h2>
+      <h2
+      className="text-center text-3xl p-4 bg-gray-400 text-white"
+      >GifExpertApp</h2>
       <AddCategory setCategories = {setCategories}/>
       <hr />
 
     
 
-      <ol>
+      
         {categories.map(category => {
           return <GifGrid key={category} category={category}/>
         })}
-      </ol>
+      
     </>
   );
 };

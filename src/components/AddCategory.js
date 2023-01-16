@@ -19,8 +19,18 @@ export const AddCategory = ({ setCategories }) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <input type="text" value={inputValue} onChange={handleInputChange} />
+      <form onSubmit={handleSubmit}
+      className="p-3 bg-gray-400"
+      >
+        <input 
+        type="text" 
+        value={inputValue} 
+        onChange={handleInputChange} 
+        placeholder="Search..." 
+
+        className="w-full border rounded-xl text-center hover:border-red"
+
+        />
       </form>
     </>
   );
